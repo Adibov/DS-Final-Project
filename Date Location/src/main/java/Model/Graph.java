@@ -30,4 +30,8 @@ public class Graph {
     public List<Node> getNodeList() {
         return nodeList;
     }
+
+    public boolean hasNodeLabel(int nodeLabel) {
+        return labelMap.containsKey(nodeLabel);
+    }
 }
