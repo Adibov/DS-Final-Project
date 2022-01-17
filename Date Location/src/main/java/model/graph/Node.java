@@ -1,5 +1,7 @@
 package model.graph;
 
+import model.map.HashTable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,10 +9,11 @@ import java.util.Objects;
 public class Node {
     final private int nodeLabel;
     final private List<Edge> adjacentEdges;
+    private HashTable<Node, Integer> nodeDistances;
 
     public Node(int nodeLabel) {
         this.nodeLabel = nodeLabel;
-        adjacentEdges = new ArrayList<>();
+        this.adjacentEdges = new ArrayList<>();
     }
 
     public void addAdjacentEdge(Edge edge) {
@@ -25,6 +28,14 @@ public class Node {
 
     public List<Edge> getAdjacentEdges() {
         return adjacentEdges;
+    }
+
+    public HashTable<Node, Integer> getNodeDistances() {
+        return nodeDistances;
+    }
+
+    public void setNodeDistances(HashTable<Node, Integer> nodeDistances) {
+        this.nodeDistances = nodeDistances;
     }
 
     @Override

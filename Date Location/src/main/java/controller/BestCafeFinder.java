@@ -9,10 +9,12 @@ import java.util.ArrayList;
 public class BestCafeFinder {
     final private BestCafeExecutor bestCafeExecutor;
     final private BestCafeGraph bestCafeGraph;
+    private boolean hasInitialized;
 
     public BestCafeFinder(BestCafeExecutor bestCafeExecutor, BestCafeGraph bestCafeGraph) {
         this.bestCafeExecutor = bestCafeExecutor;
         this.bestCafeGraph = bestCafeGraph;
+        this.hasInitialized = false;
     }
 
     public void addCandidate(Node node) {
@@ -25,6 +27,14 @@ public class BestCafeFinder {
 
     public ArrayList<Node> getBestCafePlaces() {
         return bestCafeExecutor.getBestCafePlaces();
+    }
+
+    public ArrayList<Node> getBestCafePlacesOptimized() {
+        if (!hasInitialized) {
+            bestCafeExecutor.initializeNodeDistances();
+            hasInitialized = true;
+        }
+        return bestCafeExecutor.getBestCafePlacesOptimised();
     }
 
     public Node[] getCandidates() {

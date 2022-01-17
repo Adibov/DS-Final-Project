@@ -3,21 +3,21 @@ package view;
 import controller.GraphBuilder;
 import util.Utils;
 
-import java.util.Scanner;
-
 public class MainView {
     private boolean hasStarted;
 
     final private GraphBuilder graphBuilder;
     final private DFSView dfsView;
     final private BestCafeView bestCafeView;
+    final private BestCafeOptimisedView bestCafeOptimisedView;
     final private Utils utils;
 
-    public MainView(GraphBuilder graphBuilder, DFSView dfsView, BestCafeView bestCafeView, Utils utils) {
+    public MainView(GraphBuilder graphBuilder, DFSView dfsView, BestCafeView bestCafeView, BestCafeOptimisedView bestCafeOptimisedView, Utils utils) {
         hasStarted = false;
         this.graphBuilder = graphBuilder;
         this.dfsView = dfsView;
         this.bestCafeView = bestCafeView;
+        this.bestCafeOptimisedView = bestCafeOptimisedView;
         this.utils = utils;
     }
 
@@ -55,7 +55,8 @@ public class MainView {
                 Choose an option:
                 1) Run DFS algorithm (phase 0)
                 2) Start finding the best cafe (phase 1)
-                3) Exit""");
+                3) Start finding the best cafe via optimised algorithm (phase 2)
+                4) Exit""");
 
         var option = utils.nextInt();
         switch (option) {
@@ -66,6 +67,9 @@ public class MainView {
                 bestCafeView.showBestCafeMenu();
                 break;
             case 3:
+                bestCafeOptimisedView.showBestCafeMenu();
+                break;
+            case 4:
                 utils.clearScreen();
                 System.out.println("Hope to see you again :)");
                 return;

@@ -2,6 +2,7 @@ package model.map;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class HashTable<K, V> {
     final private HashFunction hashFunction;
@@ -19,6 +20,17 @@ public class HashTable<K, V> {
         this.currentSize = INITIAL_SIZE;
         this.keyCount = 0;
         initializeBuckets();
+    }
+
+    public HashTable(HashMap<K, V> map, HashFunction hashFunction) {
+        this.hashFunction = hashFunction;
+        this.buckets = (Bucket<K, V>[]) new Bucket[INITIAL_SIZE];
+        this.currentSize = INITIAL_SIZE;
+        this.keyCount = 0;
+        initializeBuckets();
+
+        for (var pair : map.entrySet())
+            put(pair.getKey(), pair.getValue());
     }
 
     private void initializeBuckets() {

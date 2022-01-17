@@ -10,6 +10,7 @@ import model.graph.Graph;
 import model.map.HashFunction;
 import model.map.HashTable;
 import util.Utils;
+import view.BestCafeOptimisedView;
 import view.BestCafeView;
 import view.DFSView;
 import view.MainView;
@@ -19,23 +20,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Graph graph = new Graph();
+        HashFunction hashFunction = new HashFunction();
         BestCafeGraph bestCafeGraph = new BestCafeGraph(graph);
         GraphBuilder graphBuilder = new GraphBuilder(bestCafeGraph);
         DFSExecutor dfsExecutor = new DFSExecutor(graph);
         NodeDistanceComparator nodeDistanceComparator = new NodeDistanceComparator();
         DijkstraExecutor dijkstraExecutor = new DijkstraExecutor(graph, nodeDistanceComparator);
         GraphTraverser graphTraverser = new GraphTraverser(dfsExecutor);
-        BestCafeExecutor bestCafeExecutor = new BestCafeExecutor(dijkstraExecutor, bestCafeGraph, dfsExecutor);
+        BestCafeExecutor bestCafeExecutor = new BestCafeExecutor(dijkstraExecutor, bestCafeGraph, dfsExecutor, hashFunction);
         BestCafeFinder bestCafeFinder = new BestCafeFinder(bestCafeExecutor, bestCafeGraph);
         Scanner inputScanner = new Scanner(System.in);
         Utils utils = new Utils(inputScanner);
         DFSView dfsView = new DFSView(utils, graphBuilder, graphTraverser);
         BestCafeView bestCafeView = new BestCafeView(bestCafeFinder, utils);
-        MainView mainView = new MainView(graphBuilder, dfsView, bestCafeView, utils);
+        BestCafeOptimisedView bestCafeOptimisedView = new BestCafeOptimisedView(bestCafeFinder, utils);
+        MainView mainView = new MainView(graphBuilder, dfsView, bestCafeView, bestCafeOptimisedView, utils);
         mainView.showMainMenu();
 
-        HashFunction hashFunction = new HashFunction();
-        HashTable<Integer, Integer> hashTable = new HashTable<>(hashFunction);
+//        HashTable<Integer, Integer> hashTable = new HashTable<>(hashFunction);
 //        while (true) {
 //            int t = inputScanner.nextInt();
 //            if (t == 1) {

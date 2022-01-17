@@ -7,8 +7,8 @@ import util.Utils;
 import java.util.Scanner;
 
 public class BestCafeView {
-    final private BestCafeFinder bestCafeFinder;
-    final private Utils utils;
+    protected final BestCafeFinder bestCafeFinder;
+    protected final Utils utils;
 
     public BestCafeView(BestCafeFinder bestCafeFinder, Utils utils) {
         this.bestCafeFinder = bestCafeFinder;
@@ -52,7 +52,7 @@ public class BestCafeView {
         return selectedNode;
     }
 
-    private void showAddCandidateMenu() {
+    protected void showAddCandidateMenu() {
         utils.clearScreen();
         var nonCandidates = bestCafeFinder.getNonCandidates();
         if (!showAvailableNodes(nonCandidates))
@@ -66,7 +66,7 @@ public class BestCafeView {
         utils.getInput();
     }
 
-    private void showRemoveCandidateMenu() {
+    protected void showRemoveCandidateMenu() {
         utils.clearScreen();
         var candidates = bestCafeFinder.getCandidates();
         if (!showAvailableNodes(candidates))
@@ -80,7 +80,7 @@ public class BestCafeView {
         utils.getInput();
     }
 
-    private void showBestCafes() {
+    protected void showBestCafes() {
         var bestCafes = bestCafeFinder.getBestCafePlaces();
         System.out.println("Best cafes:");
         for (var node : bestCafes)
