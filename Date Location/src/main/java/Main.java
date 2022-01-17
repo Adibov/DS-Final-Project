@@ -18,7 +18,14 @@ import view.MainView;
 import java.util.Scanner;
 
 public class Main {
+    static private MainView mainView;
+
     public static void main(String[] args) {
+        injectDependencies();
+        mainView.showMainMenu();
+    }
+
+    private static void injectDependencies() {
         Graph graph = new Graph();
         HashFunction hashFunction = new HashFunction();
         BestCafeGraph bestCafeGraph = new BestCafeGraph(graph);
@@ -34,36 +41,28 @@ public class Main {
         DFSView dfsView = new DFSView(utils, graphBuilder, graphTraverser);
         BestCafeView bestCafeView = new BestCafeView(bestCafeFinder, utils);
         BestCafeOptimisedView bestCafeOptimisedView = new BestCafeOptimisedView(bestCafeFinder, utils);
-        MainView mainView = new MainView(graphBuilder, dfsView, bestCafeView, bestCafeOptimisedView, utils);
-        mainView.showMainMenu();
-
-//        HashTable<Integer, Integer> hashTable = new HashTable<>(hashFunction);
-//        while (true) {
-//            int t = inputScanner.nextInt();
-//            if (t == 1) {
-//                int key = inputScanner.nextInt();
-//                int value = inputScanner.nextInt();
-//                hashTable.put(key, value);
-//            }
-//            else if (t == 2) {
-//                int key = inputScanner.nextInt();
-//                System.out.println(hashTable.get(key));
-//            }
-//            else if (t == 3) {
-//                int key = inputScanner.nextInt();
-//                hashTable.remove(key);
-//            }
-//            System.out.println(hashTable);
-//        }
+        mainView = new MainView(graphBuilder, dfsView, bestCafeView, bestCafeOptimisedView, utils);
 
     }
 }
 
 /*
+5 4
 10 7 19 20 1
-
 7 10 50
 7 20 1
 20 1 5
 7 19 20
+
+6 9
+0 1 2 3 4 5
+0 2 4
+0 4 1
+0 5 6
+1 4 2
+1 5 1
+2 3 2
+2 4 3
+4 5 9
+3 5 4
  */

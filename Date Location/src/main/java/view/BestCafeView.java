@@ -82,6 +82,7 @@ public class BestCafeView {
 
     protected void showBestCafes() {
         var bestCafes = bestCafeFinder.getBestCafePlaces();
+        utils.clearScreen();
         System.out.println("Best cafes:");
         for (var node : bestCafes)
             System.out.print(node.getNodeLabel() + " ");

@@ -11,6 +11,7 @@ public class BestCafeOptimisedView extends BestCafeView {
     @Override
     protected void showBestCafes() {
         var bestCafes = bestCafeFinder.getBestCafePlacesOptimized();
+        utils.clearScreen();
         System.out.println("Best cafes:");
         for (var node : bestCafes)
             System.out.print(node.getNodeLabel() + " ");
