@@ -1,9 +1,9 @@
-package View;
+package view;
 
-import Controller.GraphBuilder;
-import Controller.GraphTraverser;
-import Model.Node;
-import Util.Utils;
+import controller.GraphBuilder;
+import controller.GraphTraverser;
+import model.graph.Node;
+import util.Utils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,13 +13,10 @@ public class DFSView {
     private GraphBuilder graphBuilder;
     private GraphTraverser graphTraverser;
 
-    private Scanner inputScanner;
-
-    public DFSView(Utils utils, GraphBuilder graphBuilder, GraphTraverser graphTraverser, Scanner inputScanner) {
+    public DFSView(Utils utils, GraphBuilder graphBuilder, GraphTraverser graphTraverser) {
         this.utils = utils;
         this.graphBuilder = graphBuilder;
         this.graphTraverser = graphTraverser;
-        this.inputScanner = inputScanner;
     }
 
     private void showNodeLabels(List<Node> nodeList) {
@@ -27,8 +24,8 @@ public class DFSView {
         System.out.println("Result sequence:");
         for (var node : nodeList)
             System.out.print(node.getNodeLabel() + " ");
-        System.out.println("\n\nEnter any key to continue...");
-        inputScanner.nextLine();
+        System.out.println();
+        utils.getInput();
     }
 
     public void showDFSMenu() {
@@ -45,8 +42,7 @@ public class DFSView {
                 System.out.println("Invalid node label.");
             if (!firstTime)
                 firstTime = true;
-            chosenLabel = inputScanner.nextInt();
-            inputScanner.nextLine();
+            chosenLabel = utils.nextInt();
         } while (!graphBuilder.hasNodeLabel(chosenLabel));
 
         showNodeLabels(graphTraverser.getDFSSequence(chosenLabel));

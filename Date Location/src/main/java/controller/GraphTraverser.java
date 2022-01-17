@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.DFSExecutor;
-import Model.Node;
+import model.algorithms.DFSExecutor;
+import model.graph.Node;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Model;
+package model.graph;
 
 public class Edge {
     final private Node head, tail;

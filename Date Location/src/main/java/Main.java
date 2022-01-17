@@ -1,23 +1,35 @@
-import Controller.GraphBuilder;
-import Controller.GraphTraverser;
-import Model.DFSExecutor;
-import Model.Graph;
-import Util.Utils;
-import View.DFSView;
-import View.MainView;
+import controller.BestCafeFinder;
+import controller.GraphBuilder;
+import controller.GraphTraverser;
+import model.algorithms.BestCafeExecutor;
+import model.algorithms.DFSExecutor;
+import model.algorithms.dijkstra.DijkstraExecutor;
+import model.algorithms.dijkstra.NodeDistanceComparator;
+import model.graph.BestCafeGraph;
+import model.graph.Graph;
+import util.Utils;
+import view.BestCafeView;
+import view.DFSView;
+import view.MainView;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Graph graph = new Graph();
-        GraphBuilder graphBuilder = new GraphBuilder(graph);
+        BestCafeGraph bestCafeGraph = new BestCafeGraph(graph);
+        GraphBuilder graphBuilder = new GraphBuilder(bestCafeGraph);
         DFSExecutor dfsExecutor = new DFSExecutor(graph);
+        NodeDistanceComparator nodeDistanceComparator = new NodeDistanceComparator();
+        DijkstraExecutor dijkstraExecutor = new DijkstraExecutor(graph, nodeDistanceComparator);
         GraphTraverser graphTraverser = new GraphTraverser(dfsExecutor);
-        Utils utils = new Utils();
+        BestCafeExecutor bestCafeExecutor = new BestCafeExecutor(dijkstraExecutor, bestCafeGraph, dfsExecutor);
+        BestCafeFinder bestCafeFinder = new BestCafeFinder(bestCafeExecutor, bestCafeGraph);
         Scanner inputScanner = new Scanner(System.in);
-        DFSView dfsView = new DFSView(utils, graphBuilder, graphTraverser, inputScanner);
-        MainView mainView = new MainView(graphBuilder, graphTraverser, dfsView, inputScanner, utils);
+        Utils utils = new Utils(inputScanner);
+        DFSView dfsView = new DFSView(utils, graphBuilder, graphTraverser);
+        BestCafeView bestCafeView = new BestCafeView(bestCafeFinder, utils);
+        MainView mainView = new MainView(graphBuilder, dfsView, bestCafeView, utils);
         mainView.showMainMenu();
 //        graphBuilder.addNewNode(10);
 //        graphBuilder.addNewNode(7);
@@ -32,3 +44,12 @@ public class Main {
 
     }
 }
+
+/*
+10 7 19 20 1
+
+7 10 50
+7 20 1
+20 1 5
+7 19 20
+ */

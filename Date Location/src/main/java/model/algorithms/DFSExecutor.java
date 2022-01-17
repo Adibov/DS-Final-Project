@@ -1,4 +1,7 @@
-package Model;
+package model.algorithms;
+
+import model.graph.Graph;
+import model.graph.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
