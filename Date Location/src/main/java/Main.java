@@ -7,6 +7,8 @@ import model.algorithms.dijkstra.DijkstraExecutor;
 import model.algorithms.dijkstra.NodeDistanceComparator;
 import model.graph.BestCafeGraph;
 import model.graph.Graph;
+import model.map.HashFunction;
+import model.map.HashTable;
 import util.Utils;
 import view.BestCafeView;
 import view.DFSView;
@@ -31,16 +33,26 @@ public class Main {
         BestCafeView bestCafeView = new BestCafeView(bestCafeFinder, utils);
         MainView mainView = new MainView(graphBuilder, dfsView, bestCafeView, utils);
         mainView.showMainMenu();
-//        graphBuilder.addNewNode(10);
-//        graphBuilder.addNewNode(7);
-//        graphBuilder.addNewNode(19);
-//        graphBuilder.addNewNode(20);
-//        graphBuilder.addNewNode(1);
-//        graphBuilder.addNewBidirectionalEdge(10, 7, 50);
-//        graphBuilder.addNewBidirectionalEdge(19, 7, 20);
-//        graphBuilder.addNewBidirectionalEdge(7, 20, 1);
-//        graphBuilder.addNewBidirectionalEdge(1, 20, 5);
 
+        HashFunction hashFunction = new HashFunction();
+        HashTable<Integer, Integer> hashTable = new HashTable<>(hashFunction);
+//        while (true) {
+//            int t = inputScanner.nextInt();
+//            if (t == 1) {
+//                int key = inputScanner.nextInt();
+//                int value = inputScanner.nextInt();
+//                hashTable.put(key, value);
+//            }
+//            else if (t == 2) {
+//                int key = inputScanner.nextInt();
+//                System.out.println(hashTable.get(key));
+//            }
+//            else if (t == 3) {
+//                int key = inputScanner.nextInt();
+//                hashTable.remove(key);
+//            }
+//            System.out.println(hashTable);
+//        }
 
     }
 }
