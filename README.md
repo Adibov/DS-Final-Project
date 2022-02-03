@@ -12,5 +12,8 @@ In this phase, first we need to input a modeled graph and store it in our system
 After that, we needed to run DFS algorithm to achieve DFS sequence.
 
 ## Phase 1
+After saving graph and accomplishing DFS algorithm, we had to iterate over all nodes in the order of DFS sequence and for each node, calculate the score of the corresponding node, based on a given formula. To calculate this score, we had to have distance between candiadte nodes and current node. To achieve this, we ran a dijkstra algorithm to compute these distances.  
+
+After calculating score for each node, we chose the one with highest score and report it to the user.
 
 ## Phase 2
